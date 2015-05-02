@@ -1,3 +1,3 @@
 main :: IO ()
 main = do
-    putStrLn "Hello World!"
+  putStrLn "This program does not do anything useful. Yet. Time to start working..."
