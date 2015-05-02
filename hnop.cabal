@@ -20,5 +20,6 @@ executable hnop
   -- other-modules:
   -- other-extensions:
   build-depends:       base >=4.8 && <4.9
+  GHC-Options:         -Wall -Werror -O2 -rtsopts -threaded
   hs-source-dirs:      src
   default-language:    Haskell2010
