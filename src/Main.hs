@@ -12,17 +12,19 @@ main = do
   [fileName] <- getArgs
   seed       <- newStdGen
 
-  let numbers = take 1000000 $ randomIntStream seed
-  putStrLn $ summary $ frequency numbers
-
   fileContents <- readFile fileName
+  putStrLn $ "Top 10 characters in " ++ fileName ++ ":"
   putStrLn $ summary $ take 10 $ frequency fileContents
+
+  let numbers = take 1000000 $ randomIntStream seed
+  putStrLn $ "Frequency count for " ++ show (length numbers) ++ " random numbers:"
+  putStrLn $ summary $ frequency numbers
 
 frequency :: Ord a => [a] -> FrequencyCount a
 frequency as = reverse . sort $ map (\a -> (length a, head a)) (group (sort as))
 
 summary :: Show a => FrequencyCount a -> String
-summary freq = "Frequency counts:\n" ++ counters ++ "\n" ++ total
+summary freq = counters ++ "\n" ++ total
   where counters = foldl countStr "" freq
         total    = "Total: " ++ show (foldl (+) 0 $ map fst freq) ++ "\n"
 
