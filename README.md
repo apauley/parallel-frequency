@@ -13,6 +13,7 @@ Needed only once after cloning the repo:
 
 ```bash
 $ cabal sandbox init
+$ cabal update
 ```
 
 Compile and install after each code change:
