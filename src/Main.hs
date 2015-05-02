@@ -16,7 +16,7 @@ main = do
   putStrLn $ summary $ frequency numbers
 
   fileContents <- readFile fileName
-  putStrLn $ summary $ frequency fileContents
+  putStrLn $ summary $ take 10 $ frequency fileContents
 
 frequency :: Ord a => [a] -> FrequencyCount a
 frequency as = reverse . sort $ map (\a -> (length a, head a)) (group (sort as))
