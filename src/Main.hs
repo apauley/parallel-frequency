@@ -13,6 +13,10 @@ main = do
   seed       <- newStdGen
 
   fileContents <- readFile fileName
+
+  putStrLn $ "Top 10 words in " ++ fileName ++ ":"
+  putStrLn $ summary $ take 10 $ frequency (words fileContents)
+
   putStrLn $ "Top 10 characters in " ++ fileName ++ ":"
   putStrLn $ summary $ take 10 $ frequency fileContents
 
