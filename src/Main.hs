@@ -1,3 +1,5 @@
+import System.Environment (getArgs)
+
 import System.Random
 
 import Data.List
@@ -7,12 +9,14 @@ type FrequencyCount a = [Count a]
 
 main :: IO ()
 main = do
-  seed <- newStdGen
+  [fileName] <- getArgs
+  seed       <- newStdGen
 
-  let numbers = take 50000 $ randomIntStream seed
-
+  let numbers = take 1000000 $ randomIntStream seed
   putStrLn $ summary $ frequency numbers
-  putStrLn $ summary $ frequency "Hello, world!"
+
+  fileContents <- readFile fileName
+  putStrLn $ summary $ frequency fileContents
 
 frequency :: Ord a => [a] -> FrequencyCount a
 frequency as = reverse . sort $ map (\a -> (length a, head a)) (group (sort as))
