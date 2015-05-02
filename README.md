@@ -17,25 +17,8 @@ so if you think I missed something that should be enabled by default, please let
 
 ## How to use this as a base for your new project
 
-##### 1. Fork/clone this repo, but use the name of the new project
-
-```bash
-$ git clone git@github.com:apauley/hnop.git my-new-project
-```
-
-##### 2. Create _my-new-project_ in GitHub
-
-But don't let GitHub initialise it with any files such as a README, LICENSE or .gitignore
-
-##### 3. Change the git origin to the new project
-
-```bash
-$ cd my-new-project/
-$ git remote rm origin
-$ git remote add origin git@github.com:apauley/my-new-project.git
-```
-
-##### 4. Customise and rename hnop references
+ 1. Fork this repo
+ 2. Customise and rename hnop references:
 
 ```bash
 $ git mv hnop.cabal my-new-project.cabal
@@ -49,7 +32,29 @@ $ git mv hnop.cabal my-new-project.cabal
 $ git grep -i hnop
 ```
 
-##### 5. Push and track the new upstream master
+### If I can't fork my own project and I have to clone :-/
+
+##### Clone this repo, but use the name of the new project
+
+```bash
+$ git clone git@github.com:apauley/hnop.git my-new-project
+```
+
+##### Create _my-new-project_ in GitHub
+
+But don't let GitHub initialise it with any files such as a README, LICENSE or .gitignore
+
+##### Change the git origin to the new project
+
+```bash
+$ cd my-new-project/
+$ git remote rm origin
+$ git remote add origin git@github.com:apauley/my-new-project.git
+```
+
+##### Customise as above
+
+##### Push and track the new upstream master
 
 ```bash
 $ git commit -a -m 'Customised initial config'
