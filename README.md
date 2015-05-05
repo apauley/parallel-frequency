@@ -22,5 +22,5 @@ $ cabal install -j
 The binary is placed in this repository checkout under *.cabal-sandbox/bin/frequency*
 
 ```
-$ .cabal-sandbox/bin/frequency
+$ ./run.sh /path/to/file.txt
 ```
