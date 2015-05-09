@@ -1,5 +1,6 @@
 import System.Environment (getArgs)
 import System.Random
+import Data.Time (getCurrentTime)
 
 import Shared
 
@@ -12,17 +13,24 @@ main = do
 
   fileContents <- readFile fileName
 
+  putStrLn "Calculate frequency of elements in a list."
+  t0 <- getCurrentTime
+
   let numbers = take 1000000 $ randomIntStream seed
   let (wordFreq, charFreq, numFreq) = parFreq fileContents numbers
+  printTimeSince t0 "after parFreq return"
 
-  putStrLn $ "Top 10 words in " ++ fileName ++ ":"
+  putStrLn $ "\nTop 10 words in " ++ fileName ++ ":"
   putStrLn wordFreq
+  printTimeSince t0 "after word frequency"
 
-  putStrLn $ "Top 10 characters in " ++ fileName ++ ":"
+  putStrLn $ "\nTop 10 characters in " ++ fileName ++ ":"
   putStrLn charFreq
+  printTimeSince t0 "after char frequency"
 
-  putStrLn $ "Frequency count for " ++ show (length numbers) ++ " random numbers:"
+  putStrLn $ "\nFrequency count for " ++ show (length numbers) ++ " random numbers:"
   putStrLn numFreq
+  printTimeSince t0 "after num frequency"
 
 randomIntStream :: StdGen -> [Int]
 randomIntStream = randomRs (1,5)
