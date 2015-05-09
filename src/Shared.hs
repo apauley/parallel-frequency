@@ -3,6 +3,7 @@ module Shared where
 import Data.List
 import Text.Printf
 import Data.Time.Clock
+import System.Random
 
 type Count a = (Int, a)
 type FrequencyCount a = [Count a]
@@ -23,3 +24,12 @@ printTimeSince t0 desc = do
   t1 <- getCurrentTime
   putStr desc
   printf " Time: %.2fs\n" (realToFrac (diffUTCTime t1 t0) :: Double)
+
+printRandomNumFrequency :: StdGen -> IO ()
+printRandomNumFrequency seed = do
+  let numbers = take 500000 $ randomIntStream seed
+  putStrLn $ "\nFrequency count for " ++ show (length numbers) ++ " random numbers:"
+  putStrLn $ summary $ frequency numbers
+
+randomIntStream :: StdGen -> [Int]
+randomIntStream = randomRs (1,5)

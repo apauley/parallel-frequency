@@ -1,5 +1,6 @@
 import System.Environment (getArgs)
 import Data.Time (getCurrentTime)
+import System.Random
 
 import Control.Exception
 import Control.Parallel.Strategies
@@ -9,6 +10,7 @@ import Shared
 main :: IO ()
 main = do
   [fileName] <- getArgs
+  seed       <- newStdGen
 
   fileContents <- readFile fileName
 
@@ -17,6 +19,9 @@ main = do
 
   (wordFreq, charFreq) <- evaluate (parFreq fileContents)
   printTimeSince t0 "After parFreq return."
+
+  printRandomNumFrequency seed
+  printTimeSince t0 "After num frequency print."
 
   putStrLn $ "\nTop 10 words in " ++ fileName ++ ":"
   putStrLn wordFreq
