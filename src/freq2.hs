@@ -21,7 +21,7 @@ main = do
   (wordFreq, charFreq) <- evaluate (parFreq fileContents)
   printTimeSince t0 "After parFreq return."
 
-  printRandomNumFrequency seed
+  printRandomNumFrequency seed frequency
   printTimeSince t0 "After num frequency print."
 
   putStrLn $ "\nTop 10 words in " ++ fileName ++ ":"

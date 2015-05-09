@@ -18,7 +18,7 @@ main = do
       charFreq = frequency fileContents
   printTimeSince t0 "After freq return."
 
-  printRandomNumFrequency seed
+  printRandomNumFrequency seed frequency
   printTimeSince t0 "After num frequency print."
 
   putStrLn $ "\nTop 10 words in " ++ fileName ++ ":"

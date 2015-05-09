@@ -25,11 +25,11 @@ printTimeSince t0 desc = do
   putStr desc
   printf " Time: %.2fs\n" (realToFrac (diffUTCTime t1 t0) :: Double)
 
-printRandomNumFrequency :: StdGen -> IO ()
-printRandomNumFrequency seed = do
+printRandomNumFrequency :: StdGen -> ([Int] -> FrequencyCount Int) -> IO ()
+printRandomNumFrequency seed freqFun = do
   let numbers = take 500000 $ randomIntStream seed
   putStrLn $ "\nFrequency count for " ++ show (length numbers) ++ " random numbers:"
-  putStrLn $ summary $ frequency numbers
+  putStrLn $ summary $ freqFun numbers
 
 randomIntStream :: StdGen -> [Int]
 randomIntStream = randomRs (1,5)
