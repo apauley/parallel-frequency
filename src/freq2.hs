@@ -1,6 +1,7 @@
 import System.Environment (getArgs)
 import System.Random
 import Data.Time (getCurrentTime)
+import Control.DeepSeq
 
 import Shared
 
@@ -37,7 +38,10 @@ randomIntStream = randomRs (1,5)
 
 parFreq :: String -> [Int] -> (String,  String, String)
 parFreq fileContents numbers = runEval $ do
-  w <- rpar (summary $ take 10 $ frequency (words fileContents))
-  c <- rpar (summary $ take 10 $ frequency fileContents)
-  n <- rpar (summary $ frequency numbers)
-  return (w, c, n)
+  w <- rpar $ force (summary $ take 10 $ frequency (words fileContents))
+  c <- rpar $ force (summary $ take 10 $ frequency fileContents)
+  n <- rpar $ force (summary $ frequency numbers)
+  w' <- rseq w
+  c' <- rseq c
+  n' <- rseq n
+  return (w', c', n')
