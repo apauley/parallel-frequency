@@ -6,8 +6,13 @@ import qualified Data.Map as Map
 
 import Shared hiding (frequency)
 
-frequency :: Ord a => [a] -> FrequencyCount a
-frequency xs = reverse .sort $ map swap (Map.toList . frequencyMap $ xs)
+type FrequencyMap a = Map.Map a Int
 
-frequencyMap :: Ord a => [a] -> Map.Map a Int
+frequency :: Ord a => [a] -> FrequencyCount a
+frequency = fromMap . frequencyMap
+
+fromMap :: Ord a => FrequencyMap a -> FrequencyCount a
+fromMap m = reverse . sort $ map swap (Map.toList m)
+
+frequencyMap :: Ord a => [a] -> FrequencyMap a
 frequencyMap xs = Map.fromListWith (+) [(x, 1) | x <- xs]
