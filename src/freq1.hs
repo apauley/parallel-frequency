@@ -12,10 +12,14 @@ main = do
   putStrLn "Calculate frequency of elements in a list."
   t0 <- getCurrentTime
 
+  let wordFreq = summary $ take 10 $ frequency (words fileContents)
+      charFreq = summary $ take 10 $ frequency fileContents
+  printTimeSince t0 "After freq return."
+
   putStrLn $ "\nTop 10 words in " ++ fileName ++ ":"
-  putStrLn $ summary $ take 10 $ frequency (words fileContents)
-  printTimeSince t0 "after word frequency"
+  putStrLn wordFreq
+  printTimeSince t0 "After word frequency print."
 
   putStrLn $ "\nTop 10 characters in " ++ fileName ++ ":"
-  putStrLn $ summary $ take 10 $ frequency fileContents
-  printTimeSince t0 "after char frequency"
+  putStrLn charFreq
+  printTimeSince t0 "After char frequency print."

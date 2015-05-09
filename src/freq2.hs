@@ -17,15 +17,15 @@ main = do
   t0 <- getCurrentTime
 
   (wordFreq, charFreq) <- evaluate (parFreq fileContents)
-  printTimeSince t0 "after parFreq return"
+  printTimeSince t0 "After parFreq return."
 
   putStrLn $ "\nTop 10 words in " ++ fileName ++ ":"
   putStrLn wordFreq
-  printTimeSince t0 "after word frequency"
+  printTimeSince t0 "After word frequency print."
 
   putStrLn $ "\nTop 10 characters in " ++ fileName ++ ":"
   putStrLn charFreq
-  printTimeSince t0 "after char frequency"
+  printTimeSince t0 "After char frequency print."
 
 parFreq :: String -> (String,  String)
 parFreq fileContents = runEval $ do
