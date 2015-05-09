@@ -3,7 +3,6 @@ import Data.Time (getCurrentTime)
 
 import Control.Exception
 import Control.Parallel.Strategies
-import Control.DeepSeq
 
 import Shared
 
@@ -29,6 +28,6 @@ main = do
 
 parFreq :: String -> (String,  String)
 parFreq fileContents = runEval $ do
-  w <- rpar $ force (summary $ take 10 $ frequency (words fileContents))
-  c <- rpar $ force (summary $ take 10 $ frequency fileContents)
+  w <- rpar (summary $ take 10 $ frequency (words fileContents))
+  c <- rpar (summary $ take 10 $ frequency fileContents)
   return (w, c)
