@@ -2,7 +2,6 @@ import System.Environment (getArgs)
 import System.Random
 
 import Shared
-import Frequency1
 
 main :: IO ()
 main = do
