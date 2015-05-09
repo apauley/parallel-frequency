@@ -1,5 +1,4 @@
 import System.Environment (getArgs)
-import System.Random
 import Data.Time (getCurrentTime)
 import Control.DeepSeq
 
@@ -10,15 +9,13 @@ import Control.Parallel.Strategies
 main :: IO ()
 main = do
   [fileName] <- getArgs
-  seed       <- newStdGen
 
   fileContents <- readFile fileName
 
   putStrLn "Calculate frequency of elements in a list."
   t0 <- getCurrentTime
 
-  let numbers = take 1000000 $ randomIntStream seed
-  let (wordFreq, charFreq, numFreq) = parFreq fileContents numbers
+  let (wordFreq, charFreq) = parFreq fileContents
   printTimeSince t0 "after parFreq return"
 
   putStrLn $ "\nTop 10 words in " ++ fileName ++ ":"
@@ -29,19 +26,10 @@ main = do
   putStrLn charFreq
   printTimeSince t0 "after char frequency"
 
-  putStrLn $ "\nFrequency count for " ++ show (length numbers) ++ " random numbers:"
-  putStrLn numFreq
-  printTimeSince t0 "after num frequency"
-
-randomIntStream :: StdGen -> [Int]
-randomIntStream = randomRs (1,5)
-
-parFreq :: String -> [Int] -> (String,  String, String)
-parFreq fileContents numbers = runEval $ do
+parFreq :: String -> (String,  String)
+parFreq fileContents = runEval $ do
   w <- rpar $ force (summary $ take 10 $ frequency (words fileContents))
   c <- rpar $ force (summary $ take 10 $ frequency fileContents)
-  n <- rpar $ force (summary $ frequency numbers)
   w' <- rseq w
   c' <- rseq c
-  n' <- rseq n
-  return (w', c', n')
+  return (w', c')

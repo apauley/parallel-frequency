@@ -1,5 +1,4 @@
 import System.Environment (getArgs)
-import System.Random
 import Data.Time (getCurrentTime)
 
 import Shared
@@ -7,7 +6,6 @@ import Shared
 main :: IO ()
 main = do
   [fileName] <- getArgs
-  seed       <- newStdGen
 
   fileContents <- readFile fileName
 
@@ -21,11 +19,3 @@ main = do
   putStrLn $ "\nTop 10 characters in " ++ fileName ++ ":"
   putStrLn $ summary $ take 10 $ frequency fileContents
   printTimeSince t0 "after char frequency"
-
-  let numbers = take 1000000 $ randomIntStream seed
-  putStrLn $ "\nFrequency count for " ++ show (length numbers) ++ " random numbers:"
-  putStrLn $ summary $ frequency numbers
-  printTimeSince t0 "after num frequency"
-
-randomIntStream :: StdGen -> [Int]
-randomIntStream = randomRs (1,5)
