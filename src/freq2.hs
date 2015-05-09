@@ -1,10 +1,11 @@
 import System.Environment (getArgs)
 import Data.Time (getCurrentTime)
+
+import Control.Exception
+import Control.Parallel.Strategies
 import Control.DeepSeq
 
 import Shared
-
-import Control.Parallel.Strategies
 
 main :: IO ()
 main = do
@@ -15,7 +16,7 @@ main = do
   putStrLn "Calculate frequency of elements in a list."
   t0 <- getCurrentTime
 
-  let (wordFreq, charFreq) = parFreq fileContents
+  (wordFreq, charFreq) <- evaluate (parFreq fileContents)
   printTimeSince t0 "after parFreq return"
 
   putStrLn $ "\nTop 10 words in " ++ fileName ++ ":"
@@ -30,6 +31,4 @@ parFreq :: String -> (String,  String)
 parFreq fileContents = runEval $ do
   w <- rpar $ force (summary $ take 10 $ frequency (words fileContents))
   c <- rpar $ force (summary $ take 10 $ frequency fileContents)
-  w' <- rseq w
-  c' <- rseq c
-  return (w', c')
+  return (w, c)
