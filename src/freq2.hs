@@ -4,6 +4,7 @@ import System.Random
 
 import Control.Exception
 import Control.Parallel.Strategies
+import Control.DeepSeq
 
 import Shared
 
@@ -33,6 +34,6 @@ main = do
 
 parFreq :: String -> (FrequencyCount String, FrequencyCount Char)
 parFreq fileContents = runEval $ do
-  w <- rpar (frequency (words fileContents))
-  c <- rpar (frequency fileContents)
+  w <- rpar $ force (frequency (words fileContents))
+  c <- rpar $ force (frequency fileContents)
   return (w, c)
