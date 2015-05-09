@@ -5,24 +5,25 @@ import Data.Tuple
 import qualified Data.Map as Map
 
 import Control.Parallel.Strategies
+import Control.DeepSeq
 
 import Shared hiding (frequency)
 
 type FrequencyMap a = Map.Map a Int
 
-frequency :: Ord a => [a] -> FrequencyCount a
+frequency :: (NFData a, Ord a) => [a] -> FrequencyCount a
 frequency = fromMap . frequencyDiv
 
-fromMap :: Ord a => FrequencyMap a -> FrequencyCount a
+fromMap :: (NFData a, Ord a) => FrequencyMap a -> FrequencyCount a
 fromMap m = reverse . sort $ map swap (Map.toList m)
 
-frequencyDiv :: Ord a => [a] -> FrequencyMap a
+frequencyDiv :: (NFData a, Ord a) => [a] -> FrequencyMap a
 frequencyDiv = parFrequencyMap . splitList
 
-parFrequencyMap :: Ord a => ([a], [a]) -> FrequencyMap a
+parFrequencyMap :: (NFData a, Ord a) => ([a], [a]) -> FrequencyMap a
 parFrequencyMap (xs, ys) = runEval $ do
-  m1 <- rpar $ frequencyMap xs
-  m2 <- rpar $ frequencyMap ys
+  m1 <- rpar $ force (frequencyMap xs)
+  m2 <- rpar $ force (frequencyMap ys)
   return $ Map.unionWith (+) m1 m2
 
 frequencyMap :: Ord a => [a] -> FrequencyMap a
