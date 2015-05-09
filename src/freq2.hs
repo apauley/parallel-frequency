@@ -18,8 +18,8 @@ main = do
   putStrLn "Calculate frequency of elements in a list."
   t0 <- getCurrentTime
 
-  (wordFreq, charFreq) <- evaluate (parFreq fileContents)
-  printTimeSince t0 "After parFreq return."
+  (wordFreq, charFreq) <- evaluate (parCount fileContents)
+  printTimeSince t0 "After parCount return."
 
   printRandomNumFrequency seed frequency
   printTimeSince t0 "After num frequency print."
@@ -32,8 +32,8 @@ main = do
   putStrLn $ summary (take 10 charFreq)
   printTimeSince t0 "After char frequency print."
 
-parFreq :: String -> (FrequencyCount String, FrequencyCount Char)
-parFreq fileContents = runEval $ do
+parCount :: String -> (FrequencyCount String, FrequencyCount Char)
+parCount fileContents = runEval $ do
   w <- rpar $ force (frequency (words fileContents))
   c <- rpar $ force (frequency fileContents)
   return (w, c)
