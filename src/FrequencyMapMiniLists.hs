@@ -13,10 +13,10 @@ frequency :: Ord a => [a] -> FrequencyCount a
 frequency = fromMap . fold . frequencyMapMiniLists
 
 frequencyMapMiniLists :: Ord a => [a] -> [FrequencyMap a]
-frequencyMapMiniLists as = map frequencyMap (splitList as)
+frequencyMapMiniLists as = map frequencyMap (split as)
 
 fold :: Ord a => [FrequencyMap a] -> FrequencyMap a
 fold = foldl (Map.unionWith (+)) Map.empty
 
-splitList :: [a] -> [[a]]
-splitList as = chunksOf 5000 as
+split :: [a] -> [[a]]
+split = chunksOf 5000

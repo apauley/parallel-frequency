@@ -16,13 +16,13 @@ frequency :: (NFData a, Ord a) => [a] -> FrequencyCount a
 frequency = fromMap . fold . frequencyMapMiniLists
 
 frequencyMapMiniLists :: (NFData a, Ord a) => [a] -> [FrequencyMap a]
-frequencyMapMiniLists as = runEval $ parMap frequencyMap (splitList as)
+frequencyMapMiniLists as = runEval $ parMap frequencyMap (split as)
 
 fold :: (NFData a, Ord a) => [FrequencyMap a] -> FrequencyMap a
 fold = foldl (Map.unionWith (+)) Map.empty
 
-splitList :: [a] -> [[a]]
-splitList as = chunksOf 5000 as
+split :: [a] -> [[a]]
+split = chunksOf 5000
 
 parMap :: NFData b => (a -> b) -> [a] -> Eval [b]
 parMap _ [] = return []
