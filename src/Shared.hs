@@ -9,9 +9,7 @@ type Count a = (a, Int)
 type FrequencyCount a = [Count a]
 
 summary :: Show a => FrequencyCount a -> String
-summary freq = counters ++ "\n" ++ total
-  where counters = foldl countStr "" freq
-        total    = "Total: " ++ show (foldl (+) 0 $ map snd freq)
+summary = foldl countStr ""
 
 countStr :: Show a => String -> Count a -> String
 countStr acc (a, count) = acc ++ show a ++ ":\t" ++ show count ++ "\n"
