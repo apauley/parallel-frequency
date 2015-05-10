@@ -22,7 +22,7 @@ fold :: (NFData a, Ord a) => [FrequencyMap a] -> FrequencyMap a
 fold = foldl (Map.unionWith (+)) Map.empty
 
 splitList :: [a] -> [[a]]
-splitList as = chunksOf 50 as
+splitList as = chunksOf 5000 as
 
 parMap :: NFData b => (a -> b) -> [a] -> Eval [b]
 parMap _ [] = return []

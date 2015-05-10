@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
 
-.cabal-sandbox/bin/freq6 ${@} +RTS -N2 -ls -s
+.cabal-sandbox/bin/freq6 ${@} +RTS -N3 -ls -s
