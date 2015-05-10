@@ -13,10 +13,10 @@ type FrequencyCount a = [Count a]
 type FrequencyMap a = Map.Map a Int
 
 frequency :: (NFData a, Ord a) => [a] -> FrequencyCount a
-frequency = fromMap . fold . frequencyMapMiniLists
+frequency = fromMap . fold . frequencyMapChunkedlist
 
-frequencyMapMiniLists :: (NFData a, Ord a) => [a] -> [FrequencyMap a]
-frequencyMapMiniLists as = runEval $ parMap frequencyMap (split as)
+frequencyMapChunkedlist :: (NFData a, Ord a) => [a] -> [FrequencyMap a]
+frequencyMapChunkedlist as = runEval $ parMap frequencyMap (split as)
 
 fold :: (NFData a, Ord a) => [FrequencyMap a] -> FrequencyMap a
 fold = foldl (Map.unionWith (+)) Map.empty

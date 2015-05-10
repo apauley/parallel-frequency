@@ -1,4 +1,4 @@
-module FrequencyMapMiniLists where
+module FrequencyMapChunkedlist where
 
 import Data.List.Split (chunksOf)
 import qualified Data.Map as Map
@@ -10,10 +10,10 @@ type FrequencyCount a = [Count a]
 type FrequencyMap a = Map.Map a Int
 
 frequency :: Ord a => [a] -> FrequencyCount a
-frequency = fromMap . fold . frequencyMapMiniLists
+frequency = fromMap . fold . frequencyMapChunkedlist
 
-frequencyMapMiniLists :: Ord a => [a] -> [FrequencyMap a]
-frequencyMapMiniLists as = map frequencyMap (split as)
+frequencyMapChunkedlist :: Ord a => [a] -> [FrequencyMap a]
+frequencyMapChunkedlist as = map frequencyMap (split as)
 
 fold :: Ord a => [FrequencyMap a] -> FrequencyMap a
 fold = foldl (Map.unionWith (+)) Map.empty
