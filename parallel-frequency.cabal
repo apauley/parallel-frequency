@@ -48,3 +48,12 @@ executable freq4
   GHC-Options:         -Wall -Werror -O2 -rtsopts -eventlog -threaded
   hs-source-dirs:      src
   default-language:    Haskell2010
+
+executable freq5
+  main-is:             freq5-minilists.hs
+  other-modules:       Shared, FrequencyMapMiniLists
+  build-depends:       base >=4.0 && <4.9, random, time, containers
+                     , parallel, deepseq, split
+  GHC-Options:         -Wall -O2 -rtsopts -eventlog -threaded
+  hs-source-dirs:      src
+  default-language:    Haskell2010
