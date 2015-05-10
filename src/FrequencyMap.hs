@@ -21,6 +21,9 @@ frequencyDiv :: (NFData a, Ord a) => [a] -> FrequencyMap a
 frequencyDiv = parFrequencyMap . splitList
 
 parFrequencyMap :: (NFData a, Ord a) => ([a], [a]) -> FrequencyMap a
+parFrequencyMap (xs, ys) | (length xs > 1000) = Map.unionWith (+) m1 m2
+  where m1 = frequencyDiv xs
+        m2 = frequencyDiv ys
 parFrequencyMap (xs, ys) = runEval $ do
   m1 <- rpar $ force (frequencyMap xs)
   m2 <- rpar $ force (frequencyMap ys)
