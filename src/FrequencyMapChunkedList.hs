@@ -5,7 +5,7 @@ import qualified Data.Map as Map
 
 import FrequencyMap (fromMap, frequencyMap)
 
-type Count a = (Int, a)
+type Count a = (a, Int)
 type FrequencyCount a = [Count a]
 type FrequencyMap a = Map.Map a Int
 
