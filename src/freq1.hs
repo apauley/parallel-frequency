@@ -3,6 +3,7 @@ import Data.Time (getCurrentTime)
 import System.Random
 
 import Shared
+import FrequencyList
 
 main :: IO ()
 main = do

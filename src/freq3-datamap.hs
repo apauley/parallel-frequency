@@ -2,7 +2,7 @@ import System.Environment (getArgs)
 import Data.Time (getCurrentTime)
 import System.Random
 
-import Shared hiding (frequency)
+import Shared
 import FrequencyMap
 
 main :: IO ()

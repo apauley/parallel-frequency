@@ -4,8 +4,8 @@ import Data.List
 import Data.Tuple
 import qualified Data.Map as Map
 
-import Shared hiding (frequency)
-
+type Count a = (Int, a)
+type FrequencyCount a = [Count a]
 type FrequencyMap a = Map.Map a Int
 
 frequency :: Ord a => [a] -> FrequencyCount a

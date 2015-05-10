@@ -5,10 +5,11 @@ import qualified Data.Map as Map
 import Control.Parallel.Strategies
 import Control.DeepSeq
 
-import FrequencyMap hiding (frequency)
+import FrequencyMap (fromMap, frequencyMap)
 
 type Count a = (Int, a)
 type FrequencyCount a = [Count a]
+type FrequencyMap a = Map.Map a Int
 
 frequency :: (NFData a, Ord a) => [a] -> FrequencyCount a
 frequency = fromMap . frequencyDiv

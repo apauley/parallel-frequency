@@ -17,7 +17,7 @@ cabal-version:       >=1.10
 
 executable freq1
   main-is:             freq1.hs
-  other-modules:       Shared
+  other-modules:       Shared, FrequencyList
   build-depends:       base >=4.0 && <4.9, random, time
   GHC-Options:         -Wall -Werror -O2 -rtsopts -eventlog
   hs-source-dirs:      src
@@ -25,7 +25,7 @@ executable freq1
 
 executable freq2
   main-is:             freq2.hs
-  other-modules:       Shared
+  other-modules:       Shared, FrequencyList
   build-depends:       base >=4.0 && <4.9, random, time
                      , parallel, deepseq
   GHC-Options:         -Wall -Werror -O2 -rtsopts -eventlog -threaded

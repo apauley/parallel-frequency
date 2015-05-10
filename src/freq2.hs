@@ -7,6 +7,7 @@ import Control.Parallel.Strategies
 import Control.DeepSeq
 
 import Shared
+import FrequencyList
 
 main :: IO ()
 main = do
