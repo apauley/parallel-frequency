@@ -1,6 +1,6 @@
 module FrequencyMapMiniLists where
 
-import Data.List.Split (splitEvery)
+import Data.List.Split (chunksOf)
 import qualified Data.Map as Map
 
 import FrequencyMap (fromMap, frequencyMap)
@@ -19,4 +19,4 @@ fold :: Ord a => [FrequencyMap a] -> FrequencyMap a
 fold = foldl (Map.unionWith (+)) Map.empty
 
 splitList :: [a] -> [[a]]
-splitList as = splitEvery 50 as
+splitList as = chunksOf 50 as

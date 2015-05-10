@@ -1,6 +1,6 @@
 module FrequencyParMap where
 
-import Data.List.Split (splitEvery)
+import Data.List.Split (chunksOf)
 import qualified Data.Map as Map
 
 import Control.Parallel.Strategies hiding (parMap)
@@ -21,10 +21,10 @@ fold :: Ord a => [FrequencyMap a] -> FrequencyMap a
 fold = foldl (Map.unionWith (+)) Map.empty
 
 splitList :: [a] -> [[a]]
-splitList as = splitEvery 50 as
+splitList as = chunksOf 50 as
 
 parMap :: (a -> b) -> [a] -> Eval [b]
-parMap f [] = return []
+parMap _ [] = return []
 parMap f (a:as) = do
    b <- rpar (f a)
    bs <- parMap f as
