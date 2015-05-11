@@ -34,3 +34,20 @@ sortCount = sortBy cmpCount
 
 cmpCount :: Count a -> Count a -> Ordering
 cmpCount (_, b1) (_, b2) = compare b2 b1
+
+
+split :: [a] -> [[a]]
+split = chunksOf 5000
+
+-- This is from Data.List.Split
+-- I had build failures for split in some environments.
+-- Revisit later.
+-- http://hackage.haskell.org/package/split-0.2.2/docs/src/Data-List-Split-Internals.html#chunksOf
+chunksOf :: Int -> [e] -> [[e]]
+chunksOf i ls = map (take i) (build (splitter ls)) where
+  splitter :: [e] -> ([e] -> a -> a) -> a -> a
+  splitter [] _ n = n
+  splitter l c n  = l `c` splitter (drop i l) c n
+
+build :: ((a -> [a] -> [a]) -> [a] -> [a]) -> [a]
+build g = g (:) []

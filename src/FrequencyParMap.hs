@@ -1,12 +1,12 @@
 module FrequencyParMap where
 
-import Data.List.Split (chunksOf)
 import qualified Data.Map as Map
 
 import Control.Parallel.Strategies hiding (parMap)
 import Control.DeepSeq
 
 import FrequencyMap (fromMap, frequencyMap)
+import Shared (split)
 
 type Count a = (a, Int)
 type FrequencyCount a = [Count a]
@@ -20,9 +20,6 @@ frequencyMapChunkedlist as = runEval $ parMap frequencyMap (split as)
 
 fold :: (NFData a, Ord a) => [FrequencyMap a] -> FrequencyMap a
 fold = foldl (Map.unionWith (+)) Map.empty
-
-split :: [a] -> [[a]]
-split = chunksOf 5000
 
 parMap :: NFData b => (a -> b) -> [a] -> Eval [b]
 parMap _ [] = return []

@@ -3,7 +3,7 @@ import Data.Time (getCurrentTime)
 import System.Random
 
 import Shared
-import FrequencyMapChunkedlist
+import FrequencyMapChunkedList
 
 main :: IO ()
 main = do

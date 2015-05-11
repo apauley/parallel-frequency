@@ -51,9 +51,9 @@ executable freq4
 
 executable freq5
   main-is:             freq5-chunkedlist.hs
-  other-modules:       Shared, FrequencyMapChunkedlist
+  other-modules:       Shared, FrequencyMapChunkedList
   build-depends:       base >=4.0 && <4.9, random, time, containers
-                     , parallel, deepseq, split
+                     , parallel, deepseq
   GHC-Options:         -Wall -Werror -O2 -rtsopts -eventlog -threaded
   hs-source-dirs:      src
   default-language:    Haskell2010
@@ -62,7 +62,7 @@ executable freq6
   main-is:             freq6-parmap.hs
   other-modules:       Shared, FrequencyParMap
   build-depends:       base >=4.0 && <4.9, random, time, containers
-                     , parallel, deepseq, split
+                     , parallel, deepseq
   GHC-Options:         -Wall -Werror -O2 -rtsopts -eventlog -threaded
   hs-source-dirs:      src
   default-language:    Haskell2010
@@ -71,7 +71,7 @@ executable freq7
   main-is:             freq7-using.hs
   other-modules:       Shared, FrequencyMapUsing
   build-depends:       base >=4.0 && <4.9, random, time, containers
-                     , parallel, deepseq, split
+                     , parallel, deepseq
   GHC-Options:         -Wall -Werror -O2 -rtsopts -eventlog -threaded
   hs-source-dirs:      src
   default-language:    Haskell2010
