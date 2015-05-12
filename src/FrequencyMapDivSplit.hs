@@ -1,3 +1,5 @@
+{-# LANGUAGE BangPatterns #-}
+
 module FrequencyMapDivSplit where
 
 import qualified Data.Map as Map
@@ -21,7 +23,7 @@ parFrequencyMap :: (NFData a, Ord a) => ([a], [a]) -> FrequencyMap a
 parFrequencyMap = parFrequencyMap' 2
 
 parFrequencyMap' :: (NFData a, Ord a) => Int -> ([a], [a]) -> FrequencyMap a
-parFrequencyMap' 1 (xs, ys) = runEval $ do
+parFrequencyMap' 1 (!xs, !ys) = runEval $ do
   m1 <- rpar $ force (frequencyMap xs)
   m2 <- rpar $ force (frequencyMap ys)
   return $ Map.unionWith (+) m1 m2
