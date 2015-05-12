@@ -35,7 +35,6 @@ sortCount = sortBy cmpCount
 cmpCount :: Count a -> Count a -> Ordering
 cmpCount (_, b1) (_, b2) = compare b2 b1
 
-
 split :: [a] -> [[a]]
 split = chunksOf 5000
 

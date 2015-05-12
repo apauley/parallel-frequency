@@ -4,7 +4,6 @@ import System.Random
 
 import Control.Exception
 import Control.Parallel.Strategies
-import Control.DeepSeq
 
 import Shared (printTimeSince, printRandomNumFrequency, summary)
 import FrequencyMapUsing
@@ -34,7 +33,6 @@ main = do
   printTimeSince t0 "After char frequency print."
 
 parCount :: String -> (FrequencyCount String, FrequencyCount Char)
-parCount fileContents = runEval $ do
-  w <- rpar $ force (frequency (words fileContents))
-  c <- rpar $ force (frequency fileContents)
-  return (w, c)
+parCount fileContents = (w, c) `using` parTuple2 rpar rpar
+  where w = frequency (words fileContents)
+        c = frequency fileContents
