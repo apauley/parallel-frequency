@@ -1,15 +1,12 @@
 import System.Environment (getArgs)
 import Data.Time (getCurrentTime)
-import System.Random
 
 import Shared
 import FrequencyMap
 
 main :: IO ()
 main = do
-  [fileName] <- getArgs
-  seed       <- newStdGen
-
+  [fileName]   <- getArgs
   fileContents <- readFile fileName
 
   putStrLn "Calculate frequency of elements in a list."
@@ -18,9 +15,6 @@ main = do
   let wordFreq = frequency (words fileContents)
       charFreq = frequency fileContents
   printTimeSince t0 "After freq return."
-
-  printRandomNumFrequency seed frequency
-  printTimeSince t0 "After num frequency print."
 
   putStrLn $ "\nTop 10 words in " ++ fileName ++ ":"
   putStrLn $ summary (take 10 wordFreq)

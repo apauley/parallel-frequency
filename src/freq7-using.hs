@@ -1,18 +1,15 @@
 import System.Environment (getArgs)
 import Data.Time (getCurrentTime)
-import System.Random
 
 import Control.Exception
 import Control.Parallel.Strategies
 
-import Shared (printTimeSince, printRandomNumFrequency, summary)
+import Shared (printTimeSince, summary)
 import FrequencyMapUsing
 
 main :: IO ()
 main = do
-  [fileName] <- getArgs
-  seed       <- newStdGen
-
+  [fileName]   <- getArgs
   fileContents <- readFile fileName
 
   putStrLn "Calculate frequency of elements in a list."
@@ -20,9 +17,6 @@ main = do
 
   (wordFreq, charFreq) <- evaluate (parCount fileContents)
   printTimeSince t0 "After parCount return."
-
-  printRandomNumFrequency seed frequency
-  printTimeSince t0 "After num frequency print."
 
   putStrLn $ "\nTop 10 words in " ++ fileName ++ ":"
   putStrLn $ summary (take 10 wordFreq)
