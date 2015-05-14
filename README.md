@@ -19,8 +19,50 @@ $ cabal install -j
 
 ## Running the command-line executable
 
-The binary is placed in this repository checkout under *.cabal-sandbox/bin/frequency*
+There are multiple versions of the same program, each with different performance characteristics.
+
+Each program takes a filename as the only command-line argument, and produces a frequency
+count of words and characters as output.
+
+You can run all of these with summarised output by using the following script:
+```bash
+$ ./summary.sh flatland.txt
+```
 
 ```
-$ ./run.sh /path/to/file.txt
+1-seq-datalist.sh
+  Total   time    0.534s  (  0.549s elapsed)
+
+f2-par-datalist.sh
+  TASKS: 6 (1 bound, 5 peak workers (5 total), using -N2)
+  SPARKS: 2 (2 converted, 0 overflowed, 0 dud, 0 GC'd, 0 fizzled)
+  Total   time    0.756s  (  0.445s elapsed)
+
+f3-seq-datamap.sh
+  Total   time    0.168s  (  0.178s elapsed)
+
+f4-par-divide-conquer.sh
+  TASKS: 6 (1 bound, 5 peak workers (5 total), using -N2)
+  SPARKS: 8 (4 converted, 0 overflowed, 0 dud, 0 GC'd, 4 fizzled)
+  Total   time    0.259s  (  0.166s elapsed)
+
+f5-seq-chunkedlist.sh
+  TASKS: 4 (1 bound, 3 peak workers (3 total), using -N1)
+  SPARKS: 0 (0 converted, 0 overflowed, 0 dud, 0 GC'd, 0 fizzled)
+  Total   time    0.194s  (  0.205s elapsed)
+
+f6-par-parmap.sh
+  TASKS: 8 (1 bound, 7 peak workers (7 total), using -N3)
+  SPARKS: 51 (50 converted, 0 overflowed, 0 dud, 0 GC'd, 1 fizzled)
+  Total   time    0.250s  (  0.107s elapsed)
+
+f7-par-using-strategy.sh
+  TASKS: 10 (1 bound, 9 peak workers (9 total), using -N4)
+  SPARKS: 106 (96 converted, 0 overflowed, 0 dud, 0 GC'd, 10 fizzled)
+  Total   time    0.269s  (  0.085s elapsed)
+
+f8-par-parunion.sh
+  TASKS: 10 (1 bound, 9 peak workers (9 total), using -N4)
+  SPARKS: 157 (96 converted, 0 overflowed, 0 dud, 1 GC'd, 60 fizzled)
+  Total   time    0.265s  (  0.085s elapsed)
 ```
