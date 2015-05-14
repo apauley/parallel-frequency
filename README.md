@@ -64,7 +64,7 @@ f8-par-parunion.sh
   Total   time    0.265s  (  0.085s elapsed)
 ```
 
-Or you can run them individually detailed output:
+Or you can run them individually to see detailed output:
 ```
 $ ./fastest-par.sh artamene.txt
 T0: start calculating frequency of elements in a list.
