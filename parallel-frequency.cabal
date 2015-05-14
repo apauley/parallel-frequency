@@ -13,6 +13,7 @@ maintainer:          apauley+github@gmail.com
 -- category:
 build-type:          Simple
 extra-source-files:  README.md
+                     flatland.txt
 cabal-version:       >=1.10
 
 executable freq1
