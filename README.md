@@ -25,11 +25,8 @@ Each program takes a filename as the only command-line argument, and produces a 
 count of words and characters as output.
 
 You can run all of these with summarised output by using the following script:
-```bash
+```
 $ ./summary.sh flatland.txt
-```
-
-```
 1-seq-datalist.sh
   Total   time    0.534s  (  0.549s elapsed)
 
@@ -66,3 +63,73 @@ f8-par-parunion.sh
   SPARKS: 157 (96 converted, 0 overflowed, 0 dud, 1 GC'd, 60 fizzled)
   Total   time    0.265s  (  0.085s elapsed)
 ```
+
+Or you can run them individually detailed output:
+```
+$ ./fastest-par.sh artamene.txt
+T0: start calculating frequency of elements in a list.
+After parCount return. Time since start of program: 0.00s
+
+Top 10 words in artamene.txt:
+"de":	87178
+"que":	67057
+"et":	47254
+":":	44569
+"la":	42343
+"\224":	34063
+"ne":	32839
+"vous":	29862
+"le":	29532
+"je":	29121
+
+After word frequency print. Time since start of program: 4.64s
+
+Top 10 characters in artamene.txt:
+' ':	1988692
+'e':	1446254
+'s':	731644
+'i':	623145
+'u':	603616
+'t':	599321
+'a':	584293
+'n':	568182
+'r':	559543
+'o':	533967
+
+After char frequency print. Time since start of program: 4.64s
+   7,776,976,904 bytes allocated in the heap
+   3,998,967,376 bytes copied during GC
+     341,213,360 bytes maximum residency (15 sample(s))
+       8,798,480 bytes maximum slop
+             947 MB total memory in use (0 MB lost due to fragmentation)
+
+                                     Tot time (elapsed)  Avg pause  Max pause
+  Gen  0      6070 colls,  6070 par    8.915s   1.695s     0.0003s    0.0017s
+  Gen  1        15 colls,    14 par    3.025s   0.935s     0.0623s    0.2119s
+
+  Parallel GC work balance: 54.78% (serial 0%, perfect 100%)
+
+  TASKS: 10 (1 bound, 9 peak workers (9 total), using -N4)
+
+  SPARKS: 5344 (4298 converted, 0 overflowed, 0 dud, 2 GC'd, 1044 fizzled)
+
+  INIT    time    0.001s  (  0.001s elapsed)
+  MUT     time    2.540s  (  2.014s elapsed)
+  GC      time   11.940s  (  2.630s elapsed)
+  EXIT    time    0.003s  (  0.022s elapsed)
+  Total   time   14.485s  (  4.668s elapsed)
+
+  Alloc rate    3,061,624,742 bytes per MUT second
+
+  Productivity  17.6% of total user, 54.5% of total elapsed
+
+gc_alloc_block_sync: 583302
+whitehole_spin: 0
+gen[0].sync: 744
+gen[1].sync: 187665
+```
+
+## Threadscope
+
+All of the executables are compiled with *-eventlog* and run using *+RTS -ls*, and should therefore
+produce eventlog output files that can be inspected using threadscope.
