@@ -1,1 +1,1 @@
-f3.sh
+f3-seq-datamap.sh

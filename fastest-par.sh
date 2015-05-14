@@ -1,1 +1,1 @@
-f7.sh
+f7-par-using-strategy.sh
