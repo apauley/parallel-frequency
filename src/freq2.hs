@@ -1,5 +1,4 @@
 import System.Environment (getArgs)
-import Data.Time (getCurrentTime)
 
 import Control.Exception
 import Control.Parallel.Strategies
@@ -10,11 +9,9 @@ import FrequencyList
 
 main :: IO ()
 main = do
+  t0           <- printT0
   [fileName]   <- getArgs
   fileContents <- readFile fileName
-
-  putStrLn "Calculate frequency of elements in a list."
-  t0 <- getCurrentTime
 
   (wordFreq, charFreq) <- evaluate (parCount fileContents)
   printTimeSince t0 "After parCount return."

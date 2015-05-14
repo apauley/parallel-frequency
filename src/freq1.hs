@@ -1,16 +1,13 @@
 import System.Environment (getArgs)
-import Data.Time (getCurrentTime)
 
 import Shared
 import FrequencyList
 
 main :: IO ()
 main = do
+  t0           <- printT0
   [fileName]   <- getArgs
   fileContents <- readFile fileName
-
-  putStrLn "Calculate frequency of elements in a list."
-  t0 <- getCurrentTime
 
   let wordFreq = frequency (words fileContents)
       charFreq = frequency fileContents
