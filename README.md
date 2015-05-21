@@ -9,6 +9,18 @@ It tries to implement parallel techniques from chapter 2 and 3 in
 The frequency counter accepts a text file as input from the command-line, and then prints the frequency of each word
 and the frequency of each character.
 
+## Sample Text Files
+
+[Flatland](https://en.wikipedia.org/wiki/Flatland) by Edwin A. Abbott is a small text and included in this repository.
+
+I mostly ran my programs against [the longest book](https://en.wikipedia.org/wiki/List_of_longest_novels) I could find:
+A French novel called [Artamène](https://en.wikipedia.org/wiki/Artam%C3%A8ne).
+
+You can download it with the following command:
+```
+curl http://www.artamene.org/documents/cyrus[1-10].txt | iconv --from-code=ISO-8859-1 --to-code=UTF8 > artamene.txt
+```
+
 ## Running the command-line executables
 
 You can run all of these with summarised output by using the following script:
