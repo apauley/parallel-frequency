@@ -21,6 +21,22 @@ You can download it with the following command:
 curl http://www.artamene.org/documents/cyrus[1-10].txt | iconv --from-code=ISO-8859-1 --to-code=UTF8 > artamene.txt
 ```
 
+## Results so far
+
+I've managed to get more than twice the speed in my fastest parallel implementation.
+But looking at the threadscope images, it does seem that there are still significant portions that
+does not run in parallel.
+
+Can you help making it more parallel?
+
+Fastest sequential implementation:
+
+![Fastest sequential implementation](https://pbs.twimg.com/media/CFjns39W0AI0l6r.png)
+
+Fastest parallel implementation:
+
+![Fastest parallel implementation](https://pbs.twimg.com/media/CFjnwRGWAAAi_yy.png)
+
 ## Running the command-line executables
 
 You can run all of these with summarised output by using the following script:
