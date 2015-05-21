@@ -1,28 +1,15 @@
-# Count the frequency in which elements in a list occurs
+# Counts the number of times each element occurs in a list
 
-An excuse to learn parallel Haskell.
+This project implements the same frequency counter a number of times,
+trying to systematically increase the parallelism of the program with each implementation.
 
-## Building
+It tries to implement parallel techniques from chapter 2 and 3 in
+[Simon Marlow's book](http://chimera.labs.oreilly.com/books/1230000000929/index.html).
 
-Needed only once after cloning the repo:
+The frequency counter accepts a text file as input from the command-line, and then prints the frequency of each word
+and the frequency of each character.
 
-```bash
-$ cabal sandbox init
-$ cabal update
-```
-
-Compile and install after each code change:
-
-```bash
-$ cabal install -j
-```
-
-## Running the command-line executable
-
-There are multiple versions of the same program, each with different performance characteristics.
-
-Each program takes a filename as the only command-line argument, and produces a frequency
-count of words and characters as output.
+## Running the command-line executables
 
 You can run all of these with summarised output by using the following script:
 ```
@@ -127,6 +114,21 @@ gc_alloc_block_sync: 583302
 whitehole_spin: 0
 gen[0].sync: 744
 gen[1].sync: 187665
+```
+
+## Building
+
+Needed only once after cloning the repo:
+
+```bash
+$ cabal sandbox init
+$ cabal update
+```
+
+Compile and install after each code change:
+
+```bash
+$ cabal install -j
 ```
 
 ## Threadscope
