@@ -16,24 +16,24 @@ extra-source-files:  README.md
                      flatland.txt
 cabal-version:       >=1.10
 
-executable freq1
-  main-is:             freq1.hs
+executable freq-slowlist
+  main-is:             freq-slowlist.hs
   other-modules:       Shared, DefaultMain, FrequencyList
   build-depends:       base >=4.0 && <4.9, time
   GHC-Options:         -Wall -Werror -O2 -rtsopts -eventlog
   hs-source-dirs:      src
   default-language:    Haskell2010
 
-executable freq3
-  main-is:             freq3-datamap.hs
+executable freq-datamap
+  main-is:             freq-datamap.hs
   other-modules:       Shared, DefaultMain, FrequencyMap
   build-depends:       base >=4.0 && <4.9, time, containers
   GHC-Options:         -Wall -Werror -O2 -rtsopts -eventlog
   hs-source-dirs:      src
   default-language:    Haskell2010
 
-executable freq4
-  main-is:             freq4-divsplit.hs
+executable freq-divsplit
+  main-is:             freq-divsplit.hs
   other-modules:       Shared, DefaultMain, FrequencyMapDivSplit
   build-depends:       base >=4.0 && <4.9, time, containers
                      , parallel, deepseq
@@ -41,16 +41,16 @@ executable freq4
   hs-source-dirs:      src
   default-language:    Haskell2010
 
-executable freq5
-  main-is:             freq5-chunkedlist.hs
+executable freq-chunkedlist
+  main-is:             freq-chunkedlist.hs
   other-modules:       Shared, DefaultMain, FrequencyMapChunkedList
   build-depends:       base >=4.0 && <4.9, time, containers
   GHC-Options:         -Wall -Werror -O2 -rtsopts -eventlog
   hs-source-dirs:      src
   default-language:    Haskell2010
 
-executable freq6
-  main-is:             freq6-parmap.hs
+executable freq-parmap
+  main-is:             freq-parmap.hs
   other-modules:       Shared, DefaultMain, FrequencyParMap
   build-depends:       base >=4.0 && <4.9, time, containers
                      , parallel, deepseq
@@ -58,8 +58,8 @@ executable freq6
   hs-source-dirs:      src
   default-language:    Haskell2010
 
-executable freq7
-  main-is:             freq7-using.hs
+executable freq-using
+  main-is:             freq-using.hs
   other-modules:       Shared, DefaultMain, FrequencyMapUsing
   build-depends:       base >=4.0 && <4.9, time, containers
                      , parallel, deepseq
@@ -67,8 +67,8 @@ executable freq7
   hs-source-dirs:      src
   default-language:    Haskell2010
 
-executable freq8
-  main-is:             freq8-parunion.hs
+executable freq-parunion
+  main-is:             freq-parunion.hs
   other-modules:       Shared, DefaultMain, FrequencyMapParUnion
   build-depends:       base >=4.0 && <4.9, time, containers
                      , parallel, deepseq
