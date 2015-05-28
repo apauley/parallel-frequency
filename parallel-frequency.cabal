@@ -18,7 +18,7 @@ cabal-version:       >=1.10
 
 executable freq1
   main-is:             freq1.hs
-  other-modules:       Shared, FrequencyList
+  other-modules:       Shared, DefaultMain, FrequencyList
   build-depends:       base >=4.0 && <4.9, time
   GHC-Options:         -Wall -Werror -O2 -rtsopts -eventlog
   hs-source-dirs:      src

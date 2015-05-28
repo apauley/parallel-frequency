@@ -1,4 +1,4 @@
-module FrequencyList where
+module FrequencyList (frequency) where
 
 import Data.List
 import Shared (sortCount, FrequencyCount)
