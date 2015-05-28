@@ -1,4 +1,4 @@
-module FrequencyMapUsing where
+module FrequencyMapUsing (frequency) where
 
 import qualified Data.Map as Map
 

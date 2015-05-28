@@ -1,6 +1,6 @@
 {-# LANGUAGE BangPatterns #-}
 
-module FrequencyMapDivSplit where
+module FrequencyMapDivSplit (frequency) where
 
 import qualified Data.Map as Map
 

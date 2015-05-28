@@ -26,7 +26,7 @@ executable freq1
 
 executable freq3
   main-is:             freq3-datamap.hs
-  other-modules:       Shared, FrequencyMap
+  other-modules:       Shared, DefaultMain, FrequencyMap
   build-depends:       base >=4.0 && <4.9, time, containers
   GHC-Options:         -Wall -Werror -O2 -rtsopts -eventlog
   hs-source-dirs:      src
@@ -34,7 +34,7 @@ executable freq3
 
 executable freq4
   main-is:             freq4-divsplit.hs
-  other-modules:       Shared, FrequencyMapDivSplit
+  other-modules:       Shared, DefaultMain, FrequencyMapDivSplit
   build-depends:       base >=4.0 && <4.9, time, containers
                      , parallel, deepseq
   GHC-Options:         -Wall -Werror -O2 -rtsopts -eventlog -threaded
@@ -43,7 +43,7 @@ executable freq4
 
 executable freq5
   main-is:             freq5-chunkedlist.hs
-  other-modules:       Shared, FrequencyMapChunkedList
+  other-modules:       Shared, DefaultMain, FrequencyMapChunkedList
   build-depends:       base >=4.0 && <4.9, time, containers
   GHC-Options:         -Wall -Werror -O2 -rtsopts -eventlog
   hs-source-dirs:      src
@@ -51,7 +51,7 @@ executable freq5
 
 executable freq6
   main-is:             freq6-parmap.hs
-  other-modules:       Shared, FrequencyParMap
+  other-modules:       Shared, DefaultMain, FrequencyParMap
   build-depends:       base >=4.0 && <4.9, time, containers
                      , parallel, deepseq
   GHC-Options:         -Wall -Werror -O2 -rtsopts -eventlog -threaded
@@ -60,7 +60,7 @@ executable freq6
 
 executable freq7
   main-is:             freq7-using.hs
-  other-modules:       Shared, FrequencyMapUsing
+  other-modules:       Shared, DefaultMain, FrequencyMapUsing
   build-depends:       base >=4.0 && <4.9, time, containers
                      , parallel, deepseq
   GHC-Options:         -Wall -Werror -O2 -rtsopts -eventlog -threaded
@@ -69,7 +69,7 @@ executable freq7
 
 executable freq8
   main-is:             freq8-parunion.hs
-  other-modules:       Shared, FrequencyMapParUnion
+  other-modules:       Shared, DefaultMain, FrequencyMapParUnion
   build-depends:       base >=4.0 && <4.9, time, containers
                      , parallel, deepseq
   GHC-Options:         -Wall -Werror -O2 -rtsopts -eventlog -threaded
