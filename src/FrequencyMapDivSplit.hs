@@ -2,7 +2,7 @@
 
 module FrequencyMapDivSplit (frequency) where
 
-import qualified Data.Map as Map
+import qualified Data.Map.Strict as Map
 
 import Control.Parallel.Strategies
 import Control.DeepSeq

@@ -1,6 +1,6 @@
 module FrequencyMap (FrequencyMap, frequency, fromMap, frequencyMap) where
 
-import qualified Data.Map as Map
+import qualified Data.Map.Strict as Map
 
 import Shared (sortCount, FrequencyCount)
 

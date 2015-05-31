@@ -1,6 +1,6 @@
 module FrequencyMapChunked (frequencyChunked, fold) where
 
-import qualified Data.Map as Map
+import qualified Data.Map.Strict as Map
 
 import FrequencyMap (fromMap, frequencyMap)
 import Shared (FrequencyCount)
