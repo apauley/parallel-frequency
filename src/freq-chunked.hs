@@ -1,4 +1,4 @@
-import ChunkedByteStringMain (chunkedMain)
+import ChunkedMain (chunkedMain)
 import FrequencyMapChunked (frequencyChunked)
 
 main :: IO ()

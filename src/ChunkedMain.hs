@@ -1,4 +1,4 @@
-module ChunkedByteStringMain (chunkedMain) where
+module ChunkedMain (chunkedMain) where
 
 import System.Environment (getArgs)
 import GHC.Conc (getNumCapabilities)
