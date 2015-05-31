@@ -5,11 +5,8 @@ import qualified Data.Map as Map
 import Control.Parallel.Strategies hiding (parMap)
 import Control.DeepSeq
 
-import FrequencyMap (fromMap, frequencyMap)
-
-type Count a = (a, Int)
-type FrequencyCount a = [Count a]
-type FrequencyMap a = Map.Map a Int
+import FrequencyMap (FrequencyMap, fromMap, frequencyMap)
+import Shared (FrequencyCount)
 
 frequencyChunked :: (NFData a, Ord a) => [[a]] -> FrequencyCount a
 frequencyChunked = fromMap . fold . frequencyMapChunked
