@@ -6,8 +6,8 @@ trying to systematically increase the parallelism of the program with each imple
 It tries to implement parallel techniques from chapter 2 and 3 in
 [Simon Marlow's book](http://chimera.labs.oreilly.com/books/1230000000929/index.html).
 
-The frequency counter accepts a text file as input from the command-line, and then prints the frequency of each word
-and the frequency of each character.
+The frequency counter accepts a text file as input from the command-line, and then prints the frequency
+that each character occurs.
 
 ## Sample Text Files
 
