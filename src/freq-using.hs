@@ -1,5 +1,5 @@
-import DefaultMain (defaultMain)
-import FrequencyMapUsing (frequency)
+import ChunkedMain (chunkedMain)
+import FrequencyMapUsing (frequencyChunked)
 
 main :: IO ()
-main = defaultMain frequency
+main = chunkedMain frequencyChunked

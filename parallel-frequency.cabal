@@ -60,8 +60,8 @@ executable freq-parmap
 
 executable freq-using
   main-is:             freq-using.hs
-  other-modules:       Shared, DefaultMain, FrequencyMapUsing
-  build-depends:       base >=4.0 && <4.9, time, containers
+  other-modules:       Shared, ChunkedMain, FrequencyMapUsing
+  build-depends:       base >=4.0 && <4.9, time, containers, bytestring, text
                      , parallel, deepseq
   GHC-Options:         -Wall -Werror -O2 -rtsopts -eventlog -threaded
   hs-source-dirs:      src
