@@ -51,8 +51,8 @@ executable freq-chunked
 
 executable freq-parmap
   main-is:             freq-parmap.hs
-  other-modules:       Shared, DefaultMain, FrequencyParMap
-  build-depends:       base >=4.0 && <4.9, time, containers
+  other-modules:       Shared, ChunkedByteStringMain, FrequencyParMap
+  build-depends:       base >=4.0 && <4.9, time, containers, bytestring, text
                      , parallel, deepseq
   GHC-Options:         -Wall -Werror -O2 -rtsopts -eventlog -threaded
   hs-source-dirs:      src

@@ -1,5 +1,6 @@
-import DefaultMain (defaultMain)
-import FrequencyParMap (frequency)
+import ChunkedByteStringMain (chunkedMain)
+import FrequencyParMap (frequencyChunked)
+-- import FrequencyParMap (frequency)
 
 main :: IO ()
-main = defaultMain frequency
+main = chunkedMain frequencyChunked

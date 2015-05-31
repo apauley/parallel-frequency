@@ -1,4 +1,4 @@
-module FrequencyParMap (frequency) where
+module FrequencyParMap (frequencyChunked) where
 
 import qualified Data.Map as Map
 
@@ -6,17 +6,16 @@ import Control.Parallel.Strategies hiding (parMap)
 import Control.DeepSeq
 
 import FrequencyMap (fromMap, frequencyMap)
-import Shared (split)
 
 type Count a = (a, Int)
 type FrequencyCount a = [Count a]
 type FrequencyMap a = Map.Map a Int
 
-frequency :: (NFData a, Ord a) => [a] -> FrequencyCount a
-frequency = fromMap . fold . frequencyMapChunkedlist
+frequencyChunked :: (NFData a, Ord a) => [[a]] -> FrequencyCount a
+frequencyChunked = fromMap . fold . frequencyMapChunked
 
-frequencyMapChunkedlist :: (NFData a, Ord a) => [a] -> [FrequencyMap a]
-frequencyMapChunkedlist as = runEval $ parMap frequencyMap (split as)
+frequencyMapChunked :: (NFData a, Ord a) => [[a]] -> [FrequencyMap a]
+frequencyMapChunked xs = runEval $ parMap frequencyMap xs
 
 fold :: (NFData a, Ord a) => [FrequencyMap a] -> FrequencyMap a
 fold = foldl (Map.unionWith (+)) Map.empty
