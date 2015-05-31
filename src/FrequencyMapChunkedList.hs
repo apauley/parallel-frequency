@@ -1,19 +1,16 @@
-module FrequencyMapChunkedList (frequency) where
+module FrequencyMapChunkedList (frequencyChunked) where
 
 import qualified Data.Map as Map
 
 import FrequencyMap (fromMap, frequencyMap)
-import Shared (split)
+import Shared (FrequencyCount)
+import FrequencyMap (FrequencyMap)
 
-type Count a = (a, Int)
-type FrequencyCount a = [Count a]
-type FrequencyMap a = Map.Map a Int
+frequencyChunked :: Ord a => [[a]] -> FrequencyCount a
+frequencyChunked = fromMap . fold . frequencyMapChunked
 
-frequency :: Ord a => [a] -> FrequencyCount a
-frequency = fromMap . fold . frequencyMapChunkedlist
-
-frequencyMapChunkedlist :: Ord a => [a] -> [FrequencyMap a]
-frequencyMapChunkedlist as = map frequencyMap (split as)
+frequencyMapChunked :: Ord a => [[a]] -> [FrequencyMap a]
+frequencyMapChunked = map frequencyMap
 
 fold :: Ord a => [FrequencyMap a] -> FrequencyMap a
 fold = foldl (Map.unionWith (+)) Map.empty
