@@ -27,15 +27,13 @@ I've managed to get more than twice the speed in my fastest parallel implementat
 But looking at the threadscope images, it does seem that there are still significant portions that
 does not run in parallel.
 
-Can you help making it more parallel?
+[Claude Heiland-Allen](http://mathr.co.uk/blog/) was kind enough to implement this problem,
+along with detailed explanations of how he achieved better performance.
 
-Fastest sequential implementation:
+Thanks Claude!
 
-![Fastest sequential implementation](https://pbs.twimg.com/media/CFjns39W0AI0l6r.png)
-
-Fastest parallel implementation:
-
-![Fastest parallel implementation](https://pbs.twimg.com/media/CFjnwRGWAAAi_yy.png)
+I have been improving some of my code based on his:
+http://code.mathr.co.uk/word-histogram
 
 ## Running the command-line executables
 
