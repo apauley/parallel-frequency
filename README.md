@@ -37,37 +37,37 @@ The following benchmarks have been run on a 2012 Macbook Pro with 8 cores.
 $ ./summary.sh artamene.txt
 f1-seq-datalist.sh: Sequential. Frequency implementation based on list grouping/sorting.
             1192 MB total memory in use (0 MB lost due to fragmentation)
-  Total   time   26.605s  ( 27.561s elapsed)
+  Total   time   26.600s  ( 27.285s elapsed)
 
 f2-seq-datamap.sh: Sequential. Frequency implementation based on Map.fromListWith
                2 MB total memory in use (0 MB lost due to fragmentation)
-  Total   time    2.085s  (  2.134s elapsed)
+  Total   time    2.056s  (  2.096s elapsed)
 
 f3-par-divide-conquer.sh: Parallel. Split list in half recursively, with each half being run in parallel.
              645 MB total memory in use (0 MB lost due to fragmentation)
-  Parallel GC work balance: 0.45% (serial 0%, perfect 100%)
+  Parallel GC work balance: 0.90% (serial 0%, perfect 100%)
   TASKS: 6 (1 bound, 5 peak workers (5 total), using -N2)
   SPARKS: 4 (2 converted, 0 overflowed, 0 dud, 0 GC'd, 2 fizzled)
-  Total   time    5.236s  (  3.381s elapsed)
+  Total   time    5.194s  (  3.350s elapsed)
 
 f4-seq-chunked.sh: Sequential. Split file into chunks so we can parallelise the chunks later.
 f4-seq-chunked.sh: Speedup mostly due to using Data.ByteString and Data.Text for chunking instead of lists.
-              78 MB total memory in use (0 MB lost due to fragmentation)
-  Total   time    1.954s  (  2.015s elapsed)
+              19 MB total memory in use (0 MB lost due to fragmentation)
+  Total   time    2.645s  (  2.713s elapsed)
 
 f5-par-parmap.sh: Parallel. Use parMap which creates a spark for each list element.
-              69 MB total memory in use (0 MB lost due to fragmentation)
-  Parallel GC work balance: 83.76% (serial 0%, perfect 100%)
-  TASKS: 8 (1 bound, 7 peak workers (7 total), using -N3)
-  SPARKS: 3 (2 converted, 0 overflowed, 0 dud, 0 GC'd, 1 fizzled)
-  Total   time    2.246s  (  0.836s elapsed)
+              26 MB total memory in use (0 MB lost due to fragmentation)
+  Parallel GC work balance: 32.12% (serial 0%, perfect 100%)
+  TASKS: 10 (1 bound, 9 peak workers (9 total), using -N4)
+  SPARKS: 5 (4 converted, 0 overflowed, 0 dud, 0 GC'd, 1 fizzled)
+  Total   time    3.518s  (  0.977s elapsed)
 
 f6-par-using-strategy.sh: Parallel. Use the parList strategy instead of a custom parMap.
-              93 MB total memory in use (0 MB lost due to fragmentation)
-  Parallel GC work balance: 69.10% (serial 0%, perfect 100%)
+              25 MB total memory in use (0 MB lost due to fragmentation)
+  Parallel GC work balance: 70.26% (serial 0%, perfect 100%)
   TASKS: 10 (1 bound, 9 peak workers (9 total), using -N4)
   SPARKS: 10 (8 converted, 0 overflowed, 0 dud, 1 GC'd, 1 fizzled)
-  Total   time    2.617s  (  0.791s elapsed)
+  Total   time    3.294s  (  0.905s elapsed)
 ```
 
 Full output when running just one program:
@@ -75,51 +75,51 @@ Full output when running just one program:
 $ ./fastest-par.sh artamene.txt
 fastest-par.sh: Parallel. Use the parList strategy instead of a custom parMap.
 T0: start calculating frequency of elements in a list.
-After freq return. Time since start of program: 0.02s
+After freq return. Time since start of program: 0.01s
 
 Top 10 characters in artamene.txt:
-"de":	87178
-"que":	67057
-"et":	47254
-":":	44569
-"la":	42343
-"\224":	34063
-"ne":	32839
-"vous":	29862
-"le":	29532
-"je":	29121
+" ":	1988692
+"e":	1446254
+"s":	731644
+"i":	623145
+"u":	603616
+"t":	599321
+"a":	584293
+"n":	568182
+"r":	559543
+"o":	533967
 
-After character frequency print. Time since start of program: 0.76s
-   1,403,308,664 bytes allocated in the heap
-     353,968,280 bytes copied during GC
-      41,435,408 bytes maximum residency (6 sample(s))
-       3,401,824 bytes maximum slop
-              91 MB total memory in use (0 MB lost due to fragmentation)
+After character frequency print. Time since start of program: 0.88s
+   6,553,746,816 bytes allocated in the heap
+      86,856,816 bytes copied during GC
+      11,764,368 bytes maximum residency (2 sample(s))
+         194,000 bytes maximum slop
+              22 MB total memory in use (0 MB lost due to fragmentation)
 
                                      Tot time (elapsed)  Avg pause  Max pause
-  Gen  0       740 colls,   740 par    1.603s   0.222s     0.0003s    0.0018s
-  Gen  1         6 colls,     5 par    0.060s   0.022s     0.0036s    0.0068s
+  Gen  0      3627 colls,  3627 par    2.133s   0.084s     0.0000s    0.0018s
+  Gen  1         2 colls,     1 par    0.001s   0.001s     0.0005s    0.0008s
 
-  Parallel GC work balance: 74.99% (serial 0%, perfect 100%)
+  Parallel GC work balance: 85.37% (serial 0%, perfect 100%)
 
   TASKS: 10 (1 bound, 9 peak workers (9 total), using -N4)
 
   SPARKS: 10 (8 converted, 0 overflowed, 0 dud, 1 GC'd, 1 fizzled)
 
-  INIT    time    0.001s  (  0.010s elapsed)
-  MUT     time    0.848s  (  0.521s elapsed)
-  GC      time    1.663s  (  0.244s elapsed)
-  EXIT    time    0.000s  (  0.005s elapsed)
-  Total   time    2.513s  (  0.779s elapsed)
+  INIT    time    0.001s  (  0.001s elapsed)
+  MUT     time    1.101s  (  0.791s elapsed)
+  GC      time    2.134s  (  0.085s elapsed)
+  EXIT    time    0.000s  (  0.001s elapsed)
+  Total   time    3.238s  (  0.878s elapsed)
 
-  Alloc rate    1,653,963,528 bytes per MUT second
+  Alloc rate    5,951,415,914 bytes per MUT second
 
-  Productivity  33.8% of total user, 109.1% of total elapsed
+  Productivity  34.1% of total user, 125.6% of total elapsed
 
-gc_alloc_block_sync: 46099
+gc_alloc_block_sync: 22890
 whitehole_spin: 0
-gen[0].sync: 766
-gen[1].sync: 2249
+gen[0].sync: 7
+gen[1].sync: 8
 ```
 
 ## Building
