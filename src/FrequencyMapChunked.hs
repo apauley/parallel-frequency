@@ -1,4 +1,4 @@
-module FrequencyMapChunkedList (frequencyChunked) where
+module FrequencyMapChunked (frequencyChunked) where
 
 import qualified Data.Map as Map
 

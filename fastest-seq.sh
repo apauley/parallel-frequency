@@ -1,1 +1,1 @@
-f4-seq-chunkedlist.sh
+f4-seq-chunked.sh
