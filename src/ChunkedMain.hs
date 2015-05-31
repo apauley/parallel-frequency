@@ -21,8 +21,9 @@ chunkedMain frequency = do
       chunkSize  = div fileLength cores                      -- O(1)
       canBreak   = const True
       strings    = utf8Chunk canBreak chunkSize fileContents -- O(cores)
+      counter    = map T.singleton . T.unpack
       source     = map T.decodeUtf8 strings
-      charFreq   = frequency (map T.words source)
+      charFreq   = frequency (map counter source)
   printTimeSince t0 "After freq return."
 
   putStrLn $ "\nTop 10 characters in " ++ fileName ++ ":"
