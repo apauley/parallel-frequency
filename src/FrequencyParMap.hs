@@ -7,7 +7,7 @@ import FrequencyMap (FrequencyMap, fromMap, frequencyMap)
 import FrequencyMapChunked (fold)
 import Shared (FrequencyCount)
 
-frequencyChunked :: (NFData a, Ord a) => [[a]] -> FrequencyCount a
+frequencyChunked :: (NFData a, Show a, Ord a) => [[a]] -> FrequencyCount a
 frequencyChunked = fromMap . fold . frequencyMapChunked
 
 frequencyMapChunked :: (NFData a, Ord a) => [[a]] -> [FrequencyMap a]

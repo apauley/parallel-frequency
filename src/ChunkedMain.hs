@@ -1,6 +1,9 @@
+{-# LANGUAGE RankNTypes #-}
+
 module ChunkedMain (chunkedMain) where
 
 import System.Environment (getArgs)
+import Control.DeepSeq
 import GHC.Conc (getNumCapabilities)
 
 import qualified Data.ByteString    as B
@@ -10,7 +13,7 @@ import qualified Data.Text.Encoding as T
 import Utf8Chunk (utf8Chunk)
 import Shared
 
-chunkedMain :: (Show a, Ord a) => ([[T.Text]] -> FrequencyCount a) -> IO ()
+chunkedMain :: (forall a. (NFData a, Show a, Ord a) => [[a]] -> FrequencyCount a) -> IO ()
 chunkedMain frequency = do
   t0           <- printT0
   cores        <- getNumCapabilities

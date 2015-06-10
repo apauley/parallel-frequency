@@ -44,7 +44,7 @@ executable freq-divsplit
 executable freq-chunked
   main-is:             freq-chunked.hs
   other-modules:       Shared, Utf8Chunk, ChunkedMain, FrequencyMapChunked
-  build-depends:       base >=4.0 && <4.9, time, containers, bytestring, text
+  build-depends:       base >=4.0 && <4.9, time, containers, bytestring, text, deepseq
   GHC-Options:         -Wall -Werror -O2 -rtsopts -eventlog
   hs-source-dirs:      src
   default-language:    Haskell2010
@@ -52,7 +52,7 @@ executable freq-chunked
 executable freq-parmap
   main-is:             freq-parmap.hs
   other-modules:       Shared, ChunkedMain, FrequencyParMap
-  build-depends:       base >=4.0 && <4.9, time, containers, bytestring, text
+  build-depends:       base >=4.0 && <4.9, time, containers, bytestring, text, deepseq
                      , parallel, deepseq
   GHC-Options:         -Wall -Werror -O2 -rtsopts -eventlog -threaded
   hs-source-dirs:      src
