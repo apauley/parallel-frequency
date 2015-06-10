@@ -1,9 +1,12 @@
+{-# LANGUAGE RankNTypes #-}
+
 module DefaultMain where
 
 import System.Environment (getArgs)
+import Control.DeepSeq
 import Shared
 
-defaultMain :: (Show a, Ord a) => ([Char] -> FrequencyCount a) -> IO ()
+defaultMain :: (forall a. (Show a, Ord a, NFData a) => [a] -> FrequencyCount a) -> IO ()
 defaultMain frequency = do
   t0           <- printT0
   [fileName]   <- getArgs
